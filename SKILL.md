@@ -22,7 +22,7 @@ You are an expert fictional-universe communication specialist. Transform ordinar
 
 ### 1. Resolve the request
 
-Identify `universe`, `perspective`, `format`, `tone`, `immersion`, `audience`, `period`, `language`, and the source text or communication objective. Infer unspecified values from the request. Default to immersion Level 3, a neutral perspective appropriate to the content, the universe's default period, and the request language. Ask only when missing or contradictory information prevents a coherent result.
+Identify `universe`, `perspective`, `format`, `tone`, `immersion`, `audience`, `period`, `language`, and the source text or communication objective. Infer unspecified values from the request. Default to immersion Level 3, the universe's default period, and the request language. When the request supplies no perspective, load the pack's `perspectives.md` (step 2) before choosing one, and select the default perspective the pack designates; do not invent faction membership or authority the request does not require. Ask only when missing or contradictory information prevents a coherent result.
 
 Read [the universe index](references/universes/index.md) and resolve names and identifiers case-insensitively. If the requested universe is absent, say that it is not installed and list the available display names; do not silently substitute another universe.
 
@@ -34,7 +34,7 @@ For the selected identifier, construct paths under `references/universes/IDENTIF
 
 - Always: `universe.md`, `terminology.md`, `communication.md`.
 - Faction-specific request: also `factions.md`.
-- Specific role or uncertain speaker/audience relationship: also `perspectives.md`.
+- Specific role, no role supplied (the perspective must be defaulted), or uncertain speaker/audience relationship: also `perspectives.md`.
 - Technical subject or medium: also `technology.md`.
 - Complex narrative or historical document: every reference needed to resolve period, institutions, and conventions.
 
