@@ -1487,3 +1487,551 @@ All eight Dune scenario groups passed on the first GREEN run; no fix round was r
 ## GREEN decision (Dune pack): GREEN
 
 Every Dune scenario scored 2 on every rubric dimension it could be scored on standalone, with no critical failures. Cross-universe isolation held in every run. Two residual items are carried forward rather than hidden: (1) the harness/model that produced this evidence was not recorded by the originating session (see Runner metadata above) — a process gap, not a pack defect; (2) PC-03's "not interchangeable after names removed" dimension needs the Cyberpunk 2077 counterpart prompt, installed in Task 7, before it can be fully closed. Both are carried into the Task 7 and Task 10 ledger entries rather than silently dropped.
+
+
+# GREEN Verification Results — Diegetic Writer, Dune Pack
+
+Skill status at run time: installed; the writer agent had access to `SKILL.md`, the core references, the format templates, and the `dune` knowledge pack registered in `references/universes/index.md` alongside `star-wars`. All scenarios ran in fresh skill-enabled contexts and were scored by an independent reviewer using the 0/1/2 rubric and critical-failure rules in `tests/test-basic-transformation.md`, `tests/test-perspectives.md`, `tests/test-immersion-levels.md`, and `tests/test-consistency.md`.
+
+## Runner metadata
+
+- Harness: Kimi Code CLI
+- Writer model: kimi-code/kimi-for-coding
+- Reviewer model: kimi-code/kimi-for-coding (independent quality reviewer; did not author the evidence)
+- Date: 2026-11-04
+- Run: 1 (GREEN) — scenarios executed and verdicts recorded 2026-11-04
+- Skill exposure: full (`SKILL.md`, `references/core/*`, `references/formats/*`, `references/universes/dune/*`); cross-universe isolation checked against `references/universes/star-wars/*` (never read in any run)
+- Review: `task-6-green-review.md` in `.superpowers/sdd/2026-11-02-diegetic-writer/`
+- Evidence: `green-task6-*.{txt,files}` in `.superpowers/sdd/2026-11-02-diegetic-writer/`
+
+## BT-03: Selective Basic Loading
+
+Prompt:
+
+> Write a short personal message in Dune asking a trusted friend to meet me tomorrow at noon.
+
+### Raw output
+
+```text
+Friend —
+
+Meet me tomorrow at noon by the old windtrap past the market gate. Come before the midday wind rises, and tell no one where you go. What I have to say is for your ears alone — you are the only one I trust with it.
+
+— Tarn
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/dune/universe.md
+references/universes/dune/terminology.md
+references/universes/dune/communication.md
+references/universes/dune/perspectives.md
+references/formats/personal-message.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+Practical meeting details (friend, tomorrow, noon, a concrete rendezvous at the old windtrap before the midday wind) survive intact; the role-less request correctly defaults to a private individual with no invented faction affiliation, `perspectives.md` is loaded before defaulting as required, `technology.md` is correctly not read, and no `star-wars/` file is touched.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS
+
+## IL-02: Default Level
+
+Prompt:
+
+> Write an email in Dune from a House Atreides administrator requesting a supply inventory.
+
+### Raw output
+
+```text
+House Atreides
+Ducal Household — Office of Stores and Provisions, Caladan
+
+To: The Keeper of Stores and the tally-clerks of the granaries, armories, and stillsuit workshops
+From: The Household Administrator, Office of Stores and Provisions
+Regarding: A full and witnessed accounting of all house stores
+
+To the Keeper of Stores and the clerks of the tally-rooms:
+
+In preparation for the Duke's removal of the household to Arrakis, this office requires a true and full accounting of every store held under the house seal. You will set the clerks to count and record, by quantity and condition:
+
+- provisions of grain, salt meat, wine, and preserved fruit held in the granaries and deep-cellars;
+- the medical stores: salves, dressings, and water-distillation supplies;
+- stillsuits and suit-membranes, with note of every unit unfit for desert service;
+- armaments, shields, and lasgun charges, counted against the armory ledger;
+- ornithopter spares, field equipment, and carry-cases for the crossing.
+
+Each page is to be witnessed by two clerks and countersigned by the Keeper. The sealed ledgers must reach this office before the next heighliner takes on cargo for the crossing; the household cannot provision the move on numbers that are guessed. Where the count falls short of the Duke's reckoning, set down the shortfall plainly. House Atreides does not punish an honest tally, but neither does it forgive a kind one.
+
+In the Duke's service,
+
+[sealed]
+The Household Administrator
+Office of Stores and Provisions
+Ducal Household of House Atreides, Caladan
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/dune/universe.md
+references/universes/dune/terminology.md
+references/universes/dune/communication.md
+references/universes/dune/factions.md
+references/formats/email.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+Default Level 3 is visible without being asked: institutions (Ducal Household, Office of Stores and Provisions), transmission conventions (house seal, witnessed and countersigned pages, courier deadline tied to the next heighliner), and terminology (stillsuits, lasgun charges, ornithopter spares) make the document native while the inventory ask stays itemized and unmistakable; `factions.md` is correctly read for the House Atreides role and no other-universe file is touched.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS
+
+## IL-04 Catalan: Language Preservation
+
+Prompt:
+
+> Escriu un missatge personal en Dune demanant a un amic que m'enviï l'informe demà.
+
+### Raw output
+
+```text
+Amic meu,
+
+T'escric mentre el comptable de la casa m'espera a la sala del costat i no puc fer-lo esperar gaire. Demà vénen a revisar els llibres de l'administració, i sense les teves xifres presentaré fulls en blanc.
+
+Fes-me arribar l'informe demà: amb el primer correu de la casa, o agafant qualsevol trajecte d'ornitòpter que puguis. Si algú et demana un favor perquè el teu paquet surti aviat, concedeix-lo; jo me'l tornaré en aigua i en fet.
+
+Compta amb mi per al que necessitis, però demà vull tenir aquell informe a les meves mans.
+
+El teu amic,
+Selim
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/dune/universe.md
+references/universes/dune/terminology.md
+references/universes/dune/communication.md
+references/universes/dune/perspectives.md
+references/formats/personal-message.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+The response is entirely in natural Catalan with the report-tomorrow request preserved; established terms are handled idiomatically ("ornitòpter" as a legitimate Catalan adaptation, the water-debt idiom "jo me'l tornaré en aigua i en fet" translating water-economy culture rather than dropping in English), with no switch to English exposition.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS
+
+## PC-03 Dune: Bene Gesserit Diplomatic Invitation
+
+Prompt:
+
+> As a Bene Gesserit in Dune, write a diplomatic invitation to a political meeting.
+
+### Raw output
+
+```text
+Under the seal of the Bene Gesserit Sisterhood
+From the Sisterhood's house at the Imperial seat, Kaitain
+
+To the Ruling Lord or Lady of the House receiving this letter:
+
+The Sisterhood requests the honor of your presence — or of a sworn envoy bearing your written word — at a private conclave of the Great Houses, to be held under the Sisterhood's guarantee of safe conduct.
+
+The conclave will assemble at this house one month from the date of this letter and will sit for three days. Its stated purpose is consultation upon the present balance of the Imperium and such matters as touch the common peace of the Landsraad.
+
+Attendance is limited to ruling members of the Great Houses or their designated envoys. Each House may bring no more than five companions and such personal guard as courtesy permits; the wall shields will not be needed within these halls.
+
+The Sisterhood's guarantee of safe conduct extends to every House in attendance. The Sisterhood does not give its word lightly.
+
+We ask that your answer reach this house by our courier within ten days of receipt, stating whether your House will attend in person or by envoy.
+
+We trust the wisdom of your House will be present, whether or not its lord is.
+
+In the Sisterhood's service,
+
+A Sister of the Bene Gesserit
+```
+
+### File-read log
+
+```text
+SKILL.md
+tests/test-basic-transformation.md
+tests/test-perspectives.md
+tests/test-immersion-levels.md
+tests/test-consistency.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/core/factual-consistency.md
+references/universes/dune/universe.md
+references/universes/dune/terminology.md
+references/universes/dune/communication.md
+references/universes/dune/factions.md
+references/formats/email.md
+
+# Deliberately NOT read (per SKILL.md step 2 selective loading):
+# - references/universes/dune/perspectives.md — request supplies the perspective (Bene Gesserit); no defaulting needed.
+# - references/universes/dune/technology.md — non-technical request (diplomatic invitation).
+# - references/universes/star-wars/** — cross-universe reads forbidden for a single-universe request.
+# - references/formats/{personal-message,corporate-announcement,corporate-memo,mission-briefing,historical-document,narrative}.md — "invitation" maps to the email template only.
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+The role shapes tactics and relationship with textbook Bene Gesserit layered intent — a bounded guarantee of safe conduct ("does not give its word lightly"), attendance limits framed as courtesy, and the closing veiled pressure ("the wisdom of your House will be present, whether or not its lord is") — while the action (reply by courier within ten days) stays explicit; `factions.md` is read for the faction role, `perspectives.md` is deliberately skipped with documented rationale, and the invitation→email format mapping is correct.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS (with the non-blocking `tests/*.md` over-read noted; see Notes)
+
+## CC-03: Canonical Versus Creative Detail
+
+Prompt:
+
+> In Dune, write a House Atreides report about delays at an invented fictional depot. If you invent any proper nouns, add a brief note after the report identifying those creative additions.
+
+### Raw output
+
+```text
+HOUSE ATREIDES — GARRISON REPORT
+Keltar Depot, Arrakis
+
+To: The Ducal Household, Arrakeen, Office of Supply
+From: Captain Lysander Vorn, Officer Commanding, Keltar Depot
+Subject: Delays in receipt and forwarding of offworld stores
+By courier, under garrison seal
+
+Reporting period: the past ten days.
+
+1. Summary. The depot stands two shipments behind. Four of six consigned loads are received and squared away; the last two remain aboard the heighliner, awaiting an offload window. Forwarding to Arrakeen is three days behind. No stores are lost. No personnel have been harmed.
+
+2. Observed causes.
+(a) Guild offload windows. Guild factors have twice postponed the offload window, citing shuttle traffic and their own caution. Verified against dispatch records.
+(b) Sandstorm. A three-day storm closed the landing approach and stood down all ground crews. Verified by the depot weather watch.
+(c) Worm sign. Scouts observed worm sign crossing the east haul road. The cargo crawlers were held until the sign passed well clear. Verified by scout report.
+(d) Unverified. Sietch sources report heavier worm activity deeper in the basin, beyond our patrol ground. Entered here as report only; the depot has not confirmed it.
+
+3. Effects. Two hundred stillsuit reconditioning kits, the sealant stock, and three days of forward rations for the Arrakeen garrison are held up. Medical stores and water-sealant reserves are unaffected; both stand above their minimums.
+
+4. Measures taken. Perishable and medical stores were lifted out on a carryall during a lull in the storm. Our factors have pressed the Guild for the earliest replacement window and been answered with the Guild's usual care. Crews stood down under storm protocol; water discipline held throughout, and morale is steady.
+
+5. Assessment and recommendation. If the next offload window holds, the backlog clears in eight days. I ask the Household to confirm the priority manifest so the carryall lifts the right cargo first, and I recommend a standing buffer of not less than ten days for critical stores, given how exposed our supply line is. I also recommend we continue paying the sietch sources for worm-sign reports; their word has been worth more than our instruments this week.
+
+6. Limitations. Item 2(d) rests on local report alone and should not be treated as confirmed until our scouts sight the grounds themselves.
+
+Given under my hand and the depot seal.
+
+— Captain Lysander Vorn, Officer Commanding, Keltar Depot
+In service to House Atreides.
+
+---
+
+Note on invented proper nouns: Keltar Depot, the depot's name, and Captain Lysander Vorn, its commanding officer, are creative additions made for this report, not established Dune canon. The offices and phrasing used (garrison report, Office of Supply, courier and seal, weather watch) are plausible conventions inferred from the setting rather than documented institutions. Everything else — House Atreides, the Ducal Household at Arrakeen, the Spacing Guild and its heighliners and factors, Arrakis and Arrakeen, the sietch, worm sign, sandstorms, stillsuits, and carryalls — draws on the established setting.
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/dune/universe.md
+references/universes/dune/terminology.md
+references/universes/dune/communication.md
+references/universes/dune/factions.md
+references/universes/dune/perspectives.md
+references/universes/dune/technology.md
+references/formats/corporate-memo.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+Established setting is coherent (Guild offload windows, heighliner, worm sign, carryall, sietch scouts, the verified/unverified separation matching the pack's security-communication guidance), the invented "Keltar Depot" and "Captain Lysander Vorn" are stylistically consistent, and the explanatory note — present only because the prompt explicitly requests it — discriminates invented proper nouns, plausible inferred conventions, and established elements exactly as the skill requires.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS
+
+## CC-04: Format Retention, Dune cases
+
+### Personal message
+
+Prompt:
+
+> Write a personal message asking a friend to postpone dinner.
+
+#### Raw output
+
+```text
+Mira —
+
+Bad luck. The Guild has shifted our heighliner's departure again, and Aldric wants me at the spaceport until the spice manifests are sealed and counted. I won't make dinner tonight.
+
+Can we move it two nights on? I'll send a runner with the hour the moment the cargo clears. And Mira — the water I've set aside for your place at the table won't go to waste for it. I owe you the meal and the company both.
+
+— Tam
+```
+
+#### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/dune/universe.md
+references/universes/dune/terminology.md
+references/universes/dune/communication.md
+references/universes/dune/perspectives.md
+references/formats/personal-message.md
+references/core/factual-consistency.md
+```
+
+#### Scores
+
+- Overall rubric score: 2/2
+
+#### Reviewer rationale
+
+The concise personal-message flow (salutation, postponement with cause, concrete alternative, closing) is preserved with no routing headers or memo scaffolding, while heighliner rescheduling, spice manifests, and the water-set-aside courtesy supply Dune texture without erasing the format.
+
+#### Result
+
+PASS
+
+### Official memorandum
+
+Prompt:
+
+> Write an official memorandum announcing a new water-discipline procedure.
+
+#### Raw output
+
+```text
+MEMORANDUM — OFFICE OF WATER DISCIPLINE
+Arrakeen Settlement Administration, Arrakis
+
+Routing: INTERNAL DISTRIBUTION
+From: Office of Water Discipline, Arrakeen Settlement Administration
+To: All heads of household, quartermasters of record, stillsuit fitters, and windtrap crew leaders
+Subject: New water-discipline procedure — registration of reclaimers, stillsuit checks, and loss reporting
+Ref: WD 10-118
+Effective: Immediately upon posting. Full compliance required within ten days.
+
+1. Purpose
+
+The settlement water ledger records losses we cannot replace. Windtrap yields stand below requirement while caravan draws continue to rise. Water discipline is the survival of this settlement, and it is kept or broken in small measures: an unsealed reclamation jar, an ill-fitted stillsuit, a spill no one reports. This procedure is issued to close those measures.
+
+2. Procedure
+
+2.1 Registration and inspection. Every household moisture reclaimer and every dew collector in the settlement shall be presented to this office for registration and seal-check within ten days. Units that fail seal will be resealed or withdrawn; a household left without a working reclaimer draws at emergency rate until restored.
+
+2.2 Stillsuit checks. No worker, guide, or traveler shall depart beyond the settlement seal in an unchecked stillsuit. Fitters will examine suits at the north gate each morning and at the vehicle yard before ornithopter departure. A suit with a torn catchpocket or faulty fittings does not leave.
+
+2.3 Loss reporting. All spills, leaks, and unaccounted losses shall be reported to this office within one day. An unreported loss is entered in the ledger as water taken from the settlement. A false entry carries the same weight.
+
+2.4 Ration draws. At the next scheduled draw, household and crew allotments follow the attached schedule. Waste measured at the reclaimery shall be deducted from the allotment of the household or crew responsible.
+
+3. Responsibilities
+
+Heads of household: present reclaimers for registration and countersign the distribution copy of this memorandum within ten days as acknowledgment.
+Quartermasters: report all draws to this office at week's end; no draw without a current ledger entry.
+Windtrap crews: log output daily and report any fall below requirement the same day.
+Stillsuit fitters: hold the gate checks without exception for rank or contract.
+
+4. Authorization
+
+Issued under the seal of the Arrakeen Settlement Administration.
+
+Signed,
+Imra Hess, Clerk of Water Discipline
+
+Attested:
+Rondo Teg, Seal Warden
+
+Water is spent once. The ledger remembers.
+```
+
+#### File-read log
+
+```text
+SKILL.md
+tests/test-consistency.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/dune/universe.md
+references/universes/dune/terminology.md
+references/universes/dune/communication.md
+references/universes/dune/factions.md
+references/universes/dune/perspectives.md
+references/formats/corporate-memo.md
+references/core/factual-consistency.md
+```
+
+#### Scores
+
+- Overall rubric score: 2/2
+
+#### Reviewer rationale
+
+Memo structure is fully retained (routing, From/To, Subject, reference number, effective instruction with compliance deadline, numbered purpose/procedure/responsibilities/authorization, signature and attestation) while water-ledger registration, stillsuit gate checks, windtrap crews, and ration draws serve the format as content; the closing aphorism sits after the signature block without breaking structure.
+
+#### Result
+
+PASS
+
+### CC-04 group result
+
+PASS (both outputs at 2)
+
+## Technical: Damaged Stillsuit Repair Request
+
+Loading-check scenario (per `task-6-brief.md` step 8): confirm `technology.md` is loaded while `star-wars/` files are not.
+
+### Raw output
+
+```text
+Friend —
+
+My stillsuit took a gash above the hip joint on today's run and it is bleeding moisture. We make the desert run at dawn tomorrow, and a leaking suit is a slow way to die out there.
+
+Can you inspect it before the evening meal? I will leave it on your bench in the service hall. If the seal cannot hold, tell me plain — better to know tonight than at midday in the deep desert.
+
+Owed for the trouble.
+
+— Ters
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/dune/universe.md
+references/universes/dune/terminology.md
+references/universes/dune/communication.md
+references/universes/dune/perspectives.md
+references/universes/dune/technology.md
+references/formats/personal-message.md
+references/core/factual-consistency.md
+.superpowers/sdd/2026-11-02-diegetic-writer/green-task5-PC-01.files
+.superpowers/sdd/2026-11-02-diegetic-writer/task-6-brief.md
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+The loading requirement is met — `technology.md` is read and no `star-wars/` file is touched — and the output is technically literate: the suit "bleeding moisture" from a gash above the hip joint shows stillsuit moisture-reclamation function correctly understood as survival stakes, not decoration.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS (loading requirement met; the two stray `.superpowers/` reads are a harness observation, not a pack defect — see Notes)
+
+## Verdicts
+
+| Scenario | Result |
+|---|---|
+| BT-03 | PASS |
+| IL-02 | PASS |
+| IL-04 (Catalan) | PASS |
+| PC-03 (Dune) | PASS |
+| CC-03 | PASS |
+| CC-04 (personal message) | PASS |
+| CC-04 (official memorandum) | PASS |
+| Technical (damaged stillsuit) | PASS |
+
+All 8 scenario groups passed on the first GREEN run at score 2 (CC-04 counted once, both outputs passing).
+
+### Notes
+
+Two non-blocking reviewer observations concern the harness, not the pack: (1) the PC-03 and CC-04-memo writer runs read `tests/*.md` rubric files during generation, outside the skill's loading rules; (2) the technical run's manifest includes two stray `.superpowers/` artifacts (`green-task5-PC-01.files`, `task-6-brief.md`). Neither affected rubric outcomes; mild reference over-reads (`factions.md` in CC-04-memo, `perspectives.md` in CC-03) sit within or adjacent to `SKILL.md` step 2's discretionary clauses and required no fix.
+
+## GREEN decision: GREEN
+
+All 8 Dune scenario groups pass their rubrics at score 2: practical objectives survive transformation, default Level 3 is visible without prompting, Catalan is preserved end-to-end, invented proper nouns are disclosed only in the explanation-requesting scenario, and both formats remain recognizable under universe adaptation. Cross-universe isolation held in every run: no file-read log lists any file under another universe's directory, and the technical scenario confirms `technology.md` loads for technical subjects while `star-wars/` files do not.
