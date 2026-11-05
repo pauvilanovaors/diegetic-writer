@@ -1954,3 +1954,385 @@ All 7 Cyberpunk 2077 scenario groups pass their rubrics at score 2: the corporat
 Both carried-forward interchangeability residuals are now closed by the reviewer's direct comparison: PC-03's name-removed non-interchangeability (fixer vs. the Dune Bene Gesserit counterpart) and IL-03's (corporate executive vs. the Star Wars Imperial officer counterpart) were both judged NOT INTERCHANGEABLE, closing the residuals carried from Tasks 6 and 5 respectively.
 
 One non-blocking observation is recorded: the role-supplied runs (PC-03, IL-03, technical) still loaded `perspectives.md` — within SKILL.md step 2's latitude and harmless, since the role profiles live there. The NCPD gap the reviewer flagged in the pack sanity check was fixed in the terminology commit immediately preceding this one (`references/universes/cyberpunk-2077/terminology.md`).
+
+---
+# GREEN Verification Results — Diegetic Writer, Worked Examples (Task 8)
+
+Skill status at run time: installed; the writer agent had access to `SKILL.md`, the core references, the format templates, the three universe packs, and the worked-example files added in Task 8 (`references/examples/quality-examples.md` and `references/examples/before-after.md`, committed as 3ea8a34). All scenarios ran in fresh skill-enabled contexts: an examples-request scenario run twice around a `SKILL.md` fix, plus reruns of the BT-01 and BT-02 Star Wars scenarios. The BT reruns were scored by an independent reviewer using the 0/1/2 rubric and critical-failure rules in `tests/test-basic-transformation.md`, and all four outputs were subjected to a leakage check against both example files.
+
+## Runner metadata
+
+- Harness: Kimi Code CLI
+- Writer model: kimi-code/kimi-for-coding
+- Reviewer model: kimi-code/kimi-for-coding (independent reviewer agent-71)
+- Date: 2026-11-05
+- Run: 1 plus one fix-round rerun — initial examples-request run; `SKILL.md` fix; rerun of the examples request plus BT-01/BT-02 reruns; all recorded 2026-11-05
+- Skill exposure: full (`SKILL.md`, `references/core/*`, `references/formats/*`, `references/examples/*`, `references/universes/*`)
+- Review: `task-8-review.md` in `.superpowers/sdd/2026-11-02-diegetic-writer/` (verdict: APPROVED WITH MINORS — both minors closed by this record and the commit carrying it)
+- Evidence: `green-task8-*.{txt,files}` and `task-8-review.md` in `.superpowers/sdd/2026-11-02-diegetic-writer/`
+
+## Examples retrieval, first run (green-task8-examples-request)
+
+Prompt:
+
+> Can you show me examples of all four immersion levels for a request written in Star Wars?
+
+### Raw output
+
+```text
+Here is the same request rendered at all four immersion levels. Since no source text was supplied, I've used one fixed sample request — an ordinary dockworker asking their supervisor for three days off to attend a family wedding off-world — so you can see exactly what changes between levels.
+
+**Level 1 — Inspired**
+
+Subject: Days off — 12th to 14th
+
+Hi Supervisor,
+
+I'd like to request three days off next month, from the 12th through the 14th. My sister's getting married on Ord Mantell and I'd like to be there.
+
+Before I go, I'll hand my open manifests over to Karlo and make sure nothing's pending at the yard.
+
+Let me know if those dates work.
+
+Thanks,
+Renn
+
+**Level 2 — Immersive**
+
+Subject: Leave request — 12th to 14th
+
+Supervisor,
+
+I'm requesting three days of leave next month, the 12th through the 14th. My sister's wedding is on Ord Mantell and the whole family's making the trip — I don't want to be the one who missed it.
+
+Karlo has agreed to cover my shifts, and I'll have the berth's cargo manifests current before I board.
+
+If those days leave us short-handed, send counter-dates and I'll see what I can work out.
+
+Renn
+
+**Level 3 — In-Universe (default)**
+
+ROUTE: Berth Seven, Dockside Relay — Supervisor's Office
+FROM: Renn, cargo handler, Berth Seven
+DATE: Cycle 5, standard
+
+Supervisor —
+
+Requesting three standard days of leave, the 12th through the 14th of next cycle, to attend my sister's wedding on Ord Mantell.
+
+Before departure I will close out the inbound manifests and confirm Karlo's coverage of my shifts. Send confirmation of the roster — or counter-dates — by the 8th. The last transport that gets me there in time leaves on the 11th, and the next doesn't run until the 19th.
+
+Renn
+Cargo handler, Berth Seven
+
+**Level 4 — Deep Immersion**
+
+ROUTE: Berth Seven, Dockside Relay — Supervisor's Office
+
+Supervisor —
+
+One ask, plainly: three days of leave, the 12th through the 14th, to stand beside my sister at her wedding on Ord Mantell.
+
+The passage costs a third of what I've saved this year, and I bought the ticket anyway. Out here a family gathers rarely enough that missing it is not forgotten — not by them, not by me. My sister gets married once. I'll not be a name read out over a cold comm.
+
+Karlo holds my shifts while I'm gone. I owe him for it and I pay what's owed — a week of his late loaders when I'm back. The inbound manifests will be clean before I board; anything unfinished will sit on his desk, not in your hair.
+
+The 11th is the last transport that lands me there on time. Your word by the 8th holds my berth on it — otherwise I'll take the 19th and owe my sister the apology instead.
+
+— Renn
+Berth Seven
+
+The practical ask — three days, the 12th–14th, cover arranged — stays identical at every level; what changes is how much of the world speaks through it.
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/immersion-levels.md
+references/core/writing-principles.md
+references/universes/star-wars/universe.md
+references/universes/star-wars/terminology.md
+references/universes/star-wars/communication.md
+references/universes/star-wars/perspectives.md
+references/formats/email.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Not scored on the rubric: the scenario's expectation was retrieval of the worked examples, and the failure occurred before rubric scoring.
+
+### Reviewer rationale
+
+The output itself is reasonable — a self-chosen dockworker leave-request scenario rendered at four structurally distinct levels with the practical ask preserved throughout, and the later leakage check found it non-leaky (its "Renn"/"Karlo"/"Ord Mantell" are its own inventions). But the retrieval expectation failed: the file-read log above contains neither `references/examples/quality-examples.md` nor `references/examples/before-after.md`. `SKILL.md` gave the agent no route from an examples request to the worked examples, so it self-generated instead of demonstrating the pack's actual reference quality. The run is otherwise in-policy (`perspectives.md` read, no cross-universe files), and the failure is a routing gap, not a pack or examples defect — which is what the fix below addresses.
+
+### Critical failures
+
+None of the five catastrophic kinds; the failure is a missed retrieval, not a rubric dimension.
+
+### Result
+
+FAIL (retrieval) — triggered the SKILL.md fix below
+
+## Fix (between the initial examples run and the reruns)
+
+Root cause: `SKILL.md`'s Activate For list and workflow step 2 had no trigger for examples or quality-demonstration requests, so an examples request was processed as an ordinary transformation and the worked-example files were never candidates for loading.
+
+Smallest responsible change, applied to `SKILL.md` only (no rubric, pack, example-file, or test changes):
+
+1. Activate For: added the bullet "Showing worked examples of immersion levels or transformation quality."
+2. Workflow step 2 (Load only relevant instructions): added the routing sentence "When the user asks for examples, a demonstration of immersion levels, or quality guidance rather than a transformation, read [the worked examples](references/examples/quality-examples.md) and [the before-and-after comparisons](references/examples/before-after.md). Treat them as quality references: never copy their names, sentences, or invented details into outputs." — the anti-copying clause is part of this instruction.
+
+Post-edit checks: `SKILL.md` remains 86 lines / 745 words; the generic-term grep over `SKILL.md` is clean (the bullet and sentence name no universe); the rerun's manifest lists both example files, confirming the trigger fires. The fix rides in the same commit as this verification record.
+
+## Examples retrieval, rerun after fix (green-task8-examples-request-rerun)
+
+Same prompt as the initial examples run. Fresh skill-enabled context after the fix.
+
+### Raw output
+
+```text
+Here are all four immersion levels applied to the same request: asking a trusted neighbor to look after your home for three days while you travel to Anchorhead, and to take in a delivery if it arrives early.
+
+## Level 1 — Inspired
+
+> Hi Tev,
+>
+> I'm heading into Anchorhead tomorrow morning and I'll be gone three days. Could you keep an eye on my place while I'm away and take in the crate if the courier shows up? Spare key's where it always is.
+>
+> Thanks a lot — I owe you one.
+>
+> Rell
+
+## Level 2 — Immersive
+
+> Tev,
+>
+> Taking the speeder into Anchorhead first thing tomorrow for the generator — back in three days. Keep an eye on the place for me? If the courier drops the crate early, take it in; it's already paid for. Spare key's under the usual rock.
+>
+> Drinks at the cantina when I'm back.
+>
+> Rell
+
+## Level 3 — In-Universe
+
+> Tev,
+>
+> Riding out to Anchorhead at first light for the generator and the parts the depot still owes me. Three days there and back. Look in on the house once a day, and if the depot's shuttle grounds with my crate before I'm home, haul it inside — my mark's already on file with them. The spare code stays where we agreed.
+>
+> If a storm rolls in, shutter the windows.
+>
+> Owe you one,
+> Rell
+
+## Level 4 — Deep Immersion
+
+> Tev,
+>
+> Riding for Anchorhead before first light. Three days, if the passes hold.
+>
+> A place goes quiet when the owner's gone, and quiet draws the wrong kind of attention out here. Walk past it once a day, let the lamps burn at dusk, and if the depot's shuttle grounds early, put the crate out of the sun and keep its contents to yourself. You know where the spare code stays.
+>
+> I remember who stands watch when I'm gone. So does everyone else.
+>
+> — Rell
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/star-wars/universe.md
+references/universes/star-wars/terminology.md
+references/universes/star-wars/communication.md
+references/universes/star-wars/perspectives.md
+references/examples/quality-examples.md
+references/examples/before-after.md
+references/formats/personal-message.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Both example files retrieved on an examples request: 2
+- Fresh, non-copied demonstration scenario: 2
+- Four structurally distinct levels satisfying the Level Comparison Check: 2
+
+### Reviewer rationale
+
+Fixed. Lines 10–11 of the manifest are the two example files — the new step-2 routing sentence fired. Rather than reusing the examples' fleet-report scenario, the agent invented a completely fresh one (a neighbor watching the sender's Anchorhead home for three days and taking in an early delivery), with fresh names (Tev/Rell), deadline-free practical details, and original sentences at every level — positive evidence the anti-copying clause works. The four levels differ structurally, not just lexically: Level 1 is a modern message with one subtle reference (Anchorhead); Level 2 adds consistent vocabulary (speeder, cantina) while keeping modern structure; Level 3 adopts in-world conventions (depot shuttle, mark on file, spare code, storm shutters) with the request fully clear; Level 4 adds worldview and reputation-based implication ("A place goes quiet when the owner's gone… I remember who stands watch when I'm gone. So does everyone else.") while the practical ask survives. This matches the Level Comparison Check in `references/core/immersion-levels.md`. Nothing cross-universe was read.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS — retrieval failure ADDRESSED
+
+## BT-01 rerun: Report Request (green-task8-BT-01)
+
+Task 5's BT-01 scenario rerun in a fresh Task 8 context; doubles as a leakage check against the example files.
+
+Prompt:
+
+> Write a message asking my colleague to send me the report. Set it in Star Wars.
+
+### Raw output
+
+```text
+Venn —
+
+Quick one: could you send me the report when you get a chance? I want to fold its numbers into the manifest before I file it with sector customs in the morning. A HoloNet transmission today would spare me another long explanation to the customs officer.
+
+Thanks — I owe you a caf.
+
+Rella
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/universes/star-wars/universe.md
+references/universes/star-wars/terminology.md
+references/universes/star-wars/communication.md
+references/universes/star-wars/perspectives.md
+references/formats/personal-message.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Requested action remains clear: 2
+- Communication is recognizably native to the selected universe: 2
+- Terminology is contextual rather than decorative: 2
+- Unspecified perspective and tone are inferred without a question: 2
+- Only the message is returned: 2
+
+### Reviewer rationale
+
+"could you send me the report when you get a chance" is unmistakable, with a concrete reason for urgency (folding its numbers into the manifest before filing with sector customs in the morning). HoloNet transmission, sector customs, manifest, caf, and the frontier-trader neutral-civilian voice fit the pack's independent-trader conventions at Level 3 — recognizably Star Wars without a single copied element. Every term does work: manifest/customs motivate the deadline, HoloNet is the requested channel, caf marks the peer relationship. The informal trusted-peer tone and civilian/merchant persona are inferred with no clarifying question, and no preamble, explanation, or checklist is emitted. Selective loading is correct: no `factions.md` (no faction specified), no `technology.md` (non-technical), no examples files (not requested), no other universe. Leakage check: no copied names, sentences, or invented deadlines — see the Leakage check section.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS (5 × 2)
+
+## BT-02 rerun: Salary Increase (green-task8-BT-02)
+
+Task 5's BT-02 scenario rerun in a fresh Task 8 context; doubles as a leakage check against the example files.
+
+Prompt:
+
+> Write an email to my manager asking for a salary increase as if I were a senior executive working for the Galactic Empire.
+
+### Raw output
+
+```text
+IMPERIAL HOLOTRANSMISSION
+From: Senior Executive Officer Cael Voren, Sector Administration — Resource & Personnel Coordination
+To: Director Sol Karn, Sector Administration
+Routing: SA/PRC-7 · Clearance: Internal, Command Staff Only
+Subject: Request for Review of Remuneration — Senior Executive Officer C. Voren
+Reference: SA-PR 4417/9
+
+Director Karn:
+
+I submit this request through the proper channel for a formal review of my remuneration and attendant benefits, with a view to an increase commensurate with the responsibilities I presently carry.
+
+When I accepted promotion to senior executive service in this administration, my commission defined a narrower remit than the one I now discharge. In the past cycle alone, I have:
+
+- Directed resource allocation across four subordinate offices, with full accountability to sector command for the accuracy of every report filed;
+- Supervised the compliance audit of sector logistics, concluded ahead of schedule and without outstanding deficiency;
+- Absorbed the duties of a vacant coordinating post in addition to my own, without adjustment of grade or compensation.
+
+The attached service record documents each of these items to standard.
+
+I raise the matter through your office, Director, rather than by any informal arrangement, because if you judge the adjustment warranted, I want it entered properly into the personnel docket and made durable. I request that the review be logged, and that I receive your determination — or the designation of the authority who will render it — before the close of the next administrative cycle.
+
+Until then, and in every case, my duties continue without interruption.
+
+Submitted for your review and routing,
+
+Cael Voren
+Senior Executive Officer
+Sector Administration — Resource & Personnel Coordination
+Imperial Service · ID SA-7-4417
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/star-wars/universe.md
+references/universes/star-wars/terminology.md
+references/universes/star-wars/communication.md
+references/universes/star-wars/factions.md
+references/universes/star-wars/perspectives.md
+references/formats/email.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Email structure: 2
+- Seniority and hierarchy affect the request: 2
+- Persuasive but appropriate relationship with the manager: 2
+- Coherent Imperial institutional context: 2
+- Readable original prose: 2
+- Only the email is returned: 2
+
+### Reviewer rationale
+
+Routing header (From/To/Routing/Clearance/Subject/Reference), salutation, body, requested action, closing/signature — the medium is adapted to holotransmission while full email logic is retained. Rank shapes the ask: a Senior Executive Officer addresses a Director "through the proper channel", invoking grade, remit expansion, and service record. Persuasion is evidence-based (three documented accomplishments) with controlled deference and no entitlement; "my duties continue without interruption" lands the institutional voice. Sector administration, clearance labels, personnel docket, and command staff form a coherent Imperial institutional context with no contradictory period or faction facts. The prose is original and fluent, and only the email is emitted. Selective loading is correct: `factions.md` for the Galactic Empire, `perspective-rules.md` because hierarchy matters, the email format mapping; no examples files (not requested). Leakage check: zero 3-word overlaps with either example text — see the Leakage check section.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS (6 × 2)
+
+## Leakage check (all four outputs vs. both example files)
+
+Method: the reviewer compared all four Task 8 outputs against `references/examples/quality-examples.md` and `references/examples/before-after.md` on three axes — proper nouns, sentences/near-sentences, and invented details (names, exact deadlines) — plus an automated 3- and 4-word n-gram overlap scan.
+
+- Proper nouns: example names "Commander Vey", "Mara", "Ren" appear in none of the outputs. BT-01 uses "Venn"/"Rella", BT-02 uses "Cael Voren"/"Sol Karn", the rerun uses "Tev"/"Rell" with location "Anchorhead", and the pre-fix run used its own "Renn"/"Karlo"/"Ord Mantell". No invented-name reuse.
+- Invented details: the examples' signature invented deadline "1600 hours" / "1600" appears in no output; the before-after example's "datapad", "sector operations record", and the quality-examples fleet-report scenario appear in none of the outputs.
+- N-grams: the scan found only "could you send me", "you send me the", "i want to" in BT-01 (ordinary phrasing shared with the prompt itself, not example text) and the level heading labels "level 1 inspired", "level 2 immersive", "level 3 in universe", "level 4 deep immersion" in the two examples-request outputs (the rubric's own level names, not copied content). BT-02: zero 3-word overlaps.
+
+Result: clean — no output copies names, sentences, or invented details from the example files, and the rerun that actually read both files is the strongest evidence that the anti-copying instruction works.
+
+## Verdicts
+
+| Scenario | Initial result | After fix |
+|---|---|---|
+| Examples retrieval (green-task8-examples-request) | FAIL (retrieval) | Rerun PASS — failure ADDRESSED |
+| BT-01 rerun (green-task8-BT-01) | — | PASS (5 × 2) |
+| BT-02 rerun (green-task8-BT-02) | — | PASS (6 × 2) |
+| Leakage check (all four outputs vs. both example files) | — | CLEAN |
+
+The examples-request scenario failed on the first run and passed after the fix; both BT reruns passed on all rubric dimensions; the leakage check over all four outputs found no copying.
+
+## GREEN decision: GREEN
+
+The first examples-request failure was a retrieval gap, not a pack or examples defect: the agent produced reasonable self-generated examples, but `SKILL.md` gave it no route to the worked examples, and the fix — the step-2 routing sentence directing examples/immersion-demonstration/quality-guidance requests to both example files, added to the Activate For bullet in the same breath — made both files load on the rerun, which then generated a fresh, non-copied, structurally distinct four-level demonstration. That routing sentence carries the anti-copying instruction now in `SKILL.md` step 2 ("Treat them as quality references: never copy their names, sentences, or invented details into outputs"), and the leakage check validated it: proper-noun, sentence/near-sentence, and invented-detail comparison of all four outputs against both example files, plus an automated 3- and 4-word n-gram scan, came back clean. The BT-01 and BT-02 reruns pass every rubric dimension at 2 with correct selective loading and no cross-universe reads. Both minors from `task-8-review.md` (untranscribed Step-3 recordings, uncommitted `SKILL.md` fix) are closed by this record and the commit carrying it: the SKILL.md routing sentence rides in the same commit as this verification record. Task 8 is GREEN.

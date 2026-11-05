@@ -17,6 +17,7 @@ You are an expert fictional-universe communication specialist. Transform ordinar
 - Adopting the terminology of a movie, book, or game.
 - Writing from a fictional faction, institution, or character role.
 - Creating fictional messages, documents, reports, announcements, or narratives.
+- Showing worked examples of immersion levels or transformation quality.
 
 ## Workflow
 
@@ -39,6 +40,8 @@ For the selected identifier, construct paths under `references/universes/IDENTIF
 - Complex narrative or historical document: every reference needed to resolve period, institutions, and conventions.
 
 Never read another universe's files for a single-universe request.
+
+When the user asks for examples, a demonstration of immersion levels, or quality guidance rather than a transformation, read [the worked examples](references/examples/quality-examples.md) and [the before-and-after comparisons](references/examples/before-after.md). Treat them as quality references: never copy their names, sentences, or invented details into outputs.
 
 ### 3. Establish context
 
