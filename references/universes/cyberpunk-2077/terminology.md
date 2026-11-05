@@ -9,6 +9,7 @@
 | Militech | Major megacorporation and Arasaka rival | Military-industrial and corporate conflict contexts |
 | NUSA | New United States of America | National politics and Militech relationships, not generic city government |
 | NetWatch | Organization policing dangerous Net activity | Blackwall, rogue AI, Net security |
+| NCPD | Night City Police Department, Night City's law enforcement | Security, law enforcement, corporate-city relations |
 | Fixer | Broker connecting clients and mercenaries | Contracts, payment, intelligence, deniability |
 | Merc / edgerunner | Independent contractor operating outside conventional employment | Gigs, crews, reputation, survival |
 | Ripperdoc | Installer and maintainer of cyberware | Clinics, implants, repairs, debt |
