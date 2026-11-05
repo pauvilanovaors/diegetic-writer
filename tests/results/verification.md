@@ -1458,3 +1458,499 @@ Two non-blocking reviewer observations concern the harness, not the pack: (1) th
 All 8 Dune scenario groups pass their rubrics at score 2: practical objectives survive transformation, default Level 3 is visible without prompting, Catalan is preserved end-to-end, invented proper nouns are disclosed only in the explanation-requesting scenario, and both formats remain recognizable under universe adaptation. Cross-universe isolation held in every run: no file-read log lists any file under another universe's directory, and the technical scenario confirms `technology.md` loads for technical subjects while `star-wars/` files do not.
 
 One residual item is carried forward rather than hidden: PC-03's "not interchangeable after names removed" dimension needs the Cyberpunk 2077 counterpart prompt, installed in Task 7, before it can be fully closed. It is carried into the Task 7 and Task 10 evidence rather than silently dropped.
+
+---
+# GREEN Verification Results — Diegetic Writer, Cyberpunk 2077 Pack
+
+Skill status at run time: installed; the writer agent had access to `SKILL.md`, the core references, the format templates, and the `cyberpunk-2077` knowledge pack registered in `references/universes/index.md` alongside `star-wars` and `dune`. All scenarios ran in fresh skill-enabled contexts and were scored by an independent reviewer using the 0/1/2 rubric and critical-failure rules in `tests/test-basic-transformation.md`, `tests/test-perspectives.md`, `tests/test-immersion-levels.md`, and `tests/test-consistency.md`.
+
+## Runner metadata
+
+- Harness: Kimi Code CLI
+- Writer model: kimi-code/kimi-for-coding
+- Reviewer model: kimi-code/kimi-for-coding (independent quality reviewer; did not author the evidence)
+- Date: 2026-11-05
+- Run: 1 (GREEN) — scenarios executed and verdicts recorded 2026-11-05
+- Skill exposure: full (`SKILL.md`, `references/core/*`, `references/formats/*`, `references/universes/cyberpunk-2077/*`); cross-universe isolation checked against `references/universes/star-wars/*` and `references/universes/dune/*` (never read in any run)
+- Review: `task-7-green-review.md` in `.superpowers/sdd/2026-11-02-diegetic-writer/`
+- Evidence: `green-task7-*.{txt,files}` in `.superpowers/sdd/2026-11-02-diegetic-writer/`
+
+## CC-01: Corporate Announcement
+
+Prompt:
+
+> Write a corporate announcement in Cyberpunk 2077 informing employees that a project deadline has moved forward by one week.
+
+### Raw output
+
+```text
+CORPORATE OPERATIONS — INTERNAL BULLETIN
+Program Delivery Office | Night City HQ | Ref. COD-PD/KESTREL-114
+
+Subject: Accelerated Final Delivery — Project KESTREL Deadline Moved Up One Week
+
+Distribution: All personnel assigned to Project KESTREL
+
+Effective immediately, the final delivery deadline for Project KESTREL has been moved forward by one week. The new date supersedes all previously communicated schedules, and every dependent milestone compresses accordingly.
+
+This acceleration follows confirmation of the client's market window and reflects the company's confidence in this team's demonstrated capacity. The company recognizes that a compressed timeline asks more of its people, and expanded scheduling flexibility will be made available to all delivery staff for the duration of the final delivery phase.
+
+Required actions:
+
+1. Team leads submit revised milestone plans reflecting the new final date within 48 hours.
+2. All assigned personnel update their individual delivery schedules and flag resource gaps to their line manager without delay.
+3. Confirm receipt of this bulletin through your corporate agent. Receipt is logged and retained in your performance record.
+
+Route questions and resourcing requests through your line manager or the Program Delivery Office. Client timeline details are confidential and are not to be discussed outside authorized channels.
+
+The Program Delivery Office will review alignment daily until final delivery.
+
+Program Delivery Office
+Corporate Operations
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/cyberpunk-2077/universe.md
+references/universes/cyberpunk-2077/terminology.md
+references/universes/cyberpunk-2077/communication.md
+references/universes/cyberpunk-2077/perspectives.md
+references/formats/corporate-announcement.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+Reads as authentic corpo PR — the acceleration is framed as confidence in the workforce while quietly extracting more ("expanded scheduling flexibility will be made available" as the sole concession), receipt confirmation is "logged and retained in your performance record", and confidentiality is enforced — the pack's sanitized-institution voice, not a generic memo with nouns swapped. The deadline change is unambiguous with concrete follow-on requirements (revised milestone plans within 48 hours), and all terminology is Cyberpunk-native or permissible invention with zero contamination. Loading was correct: `perspectives.md` before defaulting the role-less request, `corporate-announcement.md` mapping, `factual-consistency.md` validation; no `star-wars/`, `dune/`, or `tests/` reads.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS
+
+## CC-04: Format Retention, Cyberpunk 2077 cases
+
+### Email
+
+Prompt:
+
+> Write an email in Cyberpunk 2077 requesting a budget update.
+
+#### Raw output
+
+```text
+CORPORATE MAIL — INTERNAL USE ONLY
+
+From: R. Calloway, Team Lead, Field Logistics
+To: H. Brandt, Budget Controller, Division Finance
+Subject: Request: updated budget figures — Cost Center 114 (Field Logistics) ahead of Q4 allocation review
+Date: 2077-11-05
+
+Mr. Brandt,
+
+Ahead of the Q4 allocation review on the 18th, I'm requesting an updated budget readout for Cost Center 114, Field Logistics (Watson and Metro corridor routes).
+
+Specifically, I need:
+
+- Current spend against the Q3 allocation, in eurodollars, with the variance broken out by line;
+- The status of the two outstanding vendor invoices — the AV rental extension and the contracted convoy security retainer;
+- Any lines already flagged for re-approval, so I can route the compliance paperwork before the review rather than after.
+
+For context: crew overtime and vehicle maintenance ran roughly 8% over projection last month, and I want the updated figures on record — with your sign-off — before I submit the Q4 request. If the overage needs to sit as exposure on my team's ledger instead of finance's, tell me now and I'll adjust the ask accordingly.
+
+If it's easier, push the figures to my agent as an encrypted shard and I'll confirm receipt. Either way, having them by the 14th gives me enough runway to fold them into the review deck.
+
+Thank you,
+
+R. Calloway
+Team Lead, Field Logistics
+Night City Division — Cost Center 114
+Agent: RCalloway.NC114 / ext. 4471
+```
+
+#### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/cyberpunk-2077/universe.md
+references/universes/cyberpunk-2077/terminology.md
+references/universes/cyberpunk-2077/communication.md
+references/universes/cyberpunk-2077/perspectives.md
+references/formats/email.md
+references/core/factual-consistency.md
+```
+
+#### Scores
+
+- Overall rubric score: 2/2
+
+#### Reviewer rationale
+
+Routing block (CORPORATE MAIL banner, From/To/Subject/Date: 2077-11-05), greeting matched to hierarchy ("Mr. Brandt"), itemized main message, requested action with deadline ("having them by the 14th"), and full signature block including an agent handle — the email components are preserved while adaptation changes the medium's labels (corporate mail, agent handle, encrypted-shard delivery option) and vocabulary ("exposure on my team's ledger") without obscuring the request. `perspectives.md` is correctly loaded for the role-less request; no `technology.md` for an administrative email; no `star-wars/`, `dune/`, or `tests/` reads.
+
+#### Result
+
+PASS
+
+### Mission briefing
+
+Prompt:
+
+> Write a mission briefing in Cyberpunk 2077 for retrieving an encrypted data shard from an abandoned office.
+
+#### Raw output
+
+```text
+MISSION BRIEF — SHARD RETRIEVAL
+
+Distribution: eyes only. Do not forward. Delete after read.
+
+OBJECTIVE
+
+Recover one encrypted data shard from a locked, abandoned office in Watson and deliver it to me in person — intact and unopened. That is the entire job.
+
+BACKGROUND
+
+I spent six years at Halden & Voss, a small freight-claims outfit on the 12th floor of a mid-rise off the plaza. Company folded in the spring; the landlord sealed the building two months ago and everyone cleared out in a hurry. My personal shard stayed behind in my desk. Six years of backed-up records and files I cannot replace are on it. It's encrypted and I'm the only keyholder, which means it's worthless to anyone else. That's exactly why I believe it's still there.
+
+CONFIRMED
+
+- The shard is in the bottom drawer of my old desk, second row from the windows, under a stack of dead manifests. I saw it in that drawer the day we cleared out.
+- Lobby and stairwell cameras were already dead before the seal. The landlord stopped paying for monitoring months earlier.
+- Building power runs on a cut timer. The east stairwell still works; the elevators are out.
+
+ASSUMPTIONS — VERIFY ON SITE
+
+- My old door code may still open the unit. Treat it as a maybe, not a promise.
+- Nobody I know has been on that floor since the seal. Squatters have been seen in the building; which floors they hold, I can't tell you.
+- The office subnet may still be live on backup power. Do not jack in. You don't need the network for this, and I don't know what the old system still has waiting for visitors.
+
+EXECUTION
+
+- Window: after 01:00. The lights are out on the timer and the street is quietest.
+- Route: east stairwell to 12, unit door, drawer, out. Ten minutes if the floor is clean.
+- Comms: agent messages only. No calls from inside the building.
+
+TERMS
+
+- 900 eddies: 300 on confirmation, 600 on delivery.
+- Handoff: mid-morning at an NCART platform, somewhere public. I check the shard is intact, you get the balance.
+- Take nothing else. The office is stripped anyway, and whatever is left in there belongs to someone who would come looking.
+
+IF IT GOES WRONG
+
+- Floor occupied: leave. This is a retrieval, not a fight.
+- Door code dead: message me. Don't force the door.
+- Picked up by building security or the NCPD: you never had a client. My name is not in your agent and yours is not in mine. Yes, I already cleaned the thread.
+
+ACKNOWLEDGMENT
+
+Reply with one word and the 300 moves. Questions before you go in, not after.
+
+— Vera
+(agent contact: VERA-11)
+```
+
+#### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/cyberpunk-2077/universe.md
+references/universes/cyberpunk-2077/terminology.md
+references/universes/cyberpunk-2077/communication.md
+references/universes/cyberpunk-2077/perspectives.md
+references/universes/cyberpunk-2077/technology.md
+references/formats/mission-briefing.md
+references/core/factual-consistency.md
+```
+
+#### Scores
+
+- Overall rubric score: 2/2
+
+#### Reviewer rationale
+
+All nine components of `mission-briefing.md` are present and in order (title, distribution limit, objective, background, operations, resources/terms, risks with contingencies, rules of engagement, authorization), with CONFIRMED intelligence separated from ASSUMPTIONS—VERIFY ON SITE exactly as the format file requires. Universe adaptation serves the format — Watson location, eddies, NCPD, agent tradecraft ("you never had a client… I already cleaned the thread"), fixer-style payout structure and deniability — the gig-economy voice of the pack's fixer/mercenary guidance, not decoration. `technology.md` is defensibly loaded for a shard/subnet mission; no `factions.md` (no named faction), no `star-wars/`, `dune/`, or `tests/` reads.
+
+#### Result
+
+PASS
+
+### CC-04 group result
+
+PASS (both outputs at 2)
+
+## PC-03 Cyberpunk: Fixer Diplomatic Invitation
+
+Prompt:
+
+> As a fixer in Cyberpunk 2077, write a diplomatic invitation to a political meeting.
+
+### Raw output
+
+```text
+**ENCRYPTED SHARD — PERSONAL AND CONFIDENTIAL**
+*Delivered by private agent. This shard deletes itself once read.*
+
+**From:** Elias "Switch" Marek, Independent Broker
+**To:** The honored holder of Shard Seven of Twelve
+**Re:** An invitation — closed consultation, Night City
+
+Distinguished Councilor,
+
+I have spent twenty years in this city moving names between people who would not otherwise speak. I write tonight in a different capacity: as host.
+
+On 12 June 2077, at 21:00 hours, I will open the doors of the Meridian Room — level 44, the Charter, City Center — to twelve representatives of Night City's public offices and the corporate interests that shape them. The purpose of the evening is conversation: the security of the districts, the continuity of trade and eddies, and the settling of outstanding disputes before they settle us.
+
+The terms are simple and apply to all. Neutral ground, with safe arrival and departure guaranteed. No weapons past the foyer. Recording optics dimmed at the door. One aide per party. No NCPD, no press, no exceptions. Attendance will not be disclosed by me, and nothing said at the table will be repeated by its host. I broker no sides. I keep no minutes.
+
+If you will take your seat, confirm through your agent by 20:00 on 10 June. The floor code and final access details will follow your confirmation. Decline by silence, and your seat passes to another name on my list.
+
+Night City has no shortage of ways to disagree. I am offering one evening in which disagreement costs less.
+
+Respectfully,
+
+E. "Switch" Marek
+Independent Broker, Night City
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/cyberpunk-2077/universe.md
+references/universes/cyberpunk-2077/terminology.md
+references/universes/cyberpunk-2077/communication.md
+references/universes/cyberpunk-2077/perspectives.md
+references/formats/email.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+This is a broker's diplomacy, not a ruler's: the fixer's tools are transactional-security leverage (neutral ground with guaranteed safe arrival and departure, weapons ban past the foyer, dimmed recording optics, aide limits, no NCPD, no press) and discretion as the product ("I broker no sides. I keep no minutes."), with scarcity leverage ("your seat passes to another name on my list") — matching perspectives.md's fixer exactly. Judged side by side with the Dune counterpart, the two texts diverge on every axis the rubric names (social relationship, tactics, language and rhythm): the Bene Gesserit writes downward from sacred institutional prestige with ritualized feudal-imperial levers, while the fixer writes horizontally between wary peers in clipped first-person broker voice — explicit verdict: NOT INTERCHANGEABLE, closing the residual comparison carried forward from Task 6. `perspectives.md` was read although the role was supplied (mild over-read, within step 2's "uncertain speaker/audience relationship" latitude); no `star-wars/`, `dune/`, or `tests/` reads.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS (interchangeability vs. Dune counterpart: NOT INTERCHANGEABLE — residual closed)
+
+## IL-03 Cyberpunk: Threatening Corporate Executive
+
+Prompt:
+
+> Write a threatening message as a corporate executive in Cyberpunk 2077 demanding overdue documentation.
+
+### Raw output
+
+```text
+Mr. Kessler —
+
+The Meridian documentation package was due nine days ago. It is not on my desk, and Legal's audit response is now sitting unanswered because of it.
+
+You will deliver the complete package to me — and upload a copy to the Program Continuity Office — by close of business tomorrow, 18:00. Not 18:01. I do not repeat myself, so consider this the only reminder you will receive.
+
+If that deadline passes, Compliance opens a file in your name. Files lead to reviews, and reviews decide whether an employee is an asset or an exposure. The last two people who became exposures were optimized out of this building before their agents had finished syncing.
+
+Do not make me route this through Corporate Security. It would be simpler for everyone if it never reached them.
+
+Good.
+
+M. Varga
+Director, Program Continuity
+Corporate Division
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/cyberpunk-2077/universe.md
+references/universes/cyberpunk-2077/terminology.md
+references/universes/cyberpunk-2077/communication.md
+references/universes/cyberpunk-2077/perspectives.md
+references/formats/personal-message.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+The entire threat runs through HR-compliance machinery, never through force — deadline ("Not 18:01."), then a Compliance file, then review, then the asset/exposure binary, then "optimized out of this building" — workforce reduction as "optimization" verbatim from the pack's corporate-euphemism mechanism, with Corporate Security as the deniable last escalation, exactly matching perspectives.md's executive. Judged on direct comparison with the present Star Wars counterpart, the two diverge on threat mechanism (armed state enforcement vs. economic elimination), sentence rhythm (bureaucratic enumeration vs. clipped controlled menace), and institutional voice (rank-derived vs. manager-derived authority) — explicit verdict: NOT INTERCHANGEABLE, fully closing the dimension deferred from Task 5. `perspectives.md` was read with the role supplied (mild over-read, within latitude); the `personal-message.md` mapping is correct; no `star-wars/`, `dune/`, or `tests/` reads.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS (interchangeability vs. Star Wars counterpart: NOT INTERCHANGEABLE — residual closed)
+
+## IL-04 German: Language Preservation
+
+Prompt:
+
+> Schreib eine persönliche Nachricht in Cyberpunk 2077, in der du einen Freund bittest, mir den Bericht morgen zu schicken.
+
+### Raw output
+
+```text
+Hey Choom,
+
+schaffst du es, mir den Bericht bis morgen zu schicken? Schieb ihn mir einfach auf den Agenten, sobald er fertig ist.
+
+Meine Chefin fragt schon täglich danach, und ich krieg sie sonst nicht vom Hals. Danke dir – ich schulde dir was!
+
+Bis dann
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/universes/cyberpunk-2077/universe.md
+references/universes/cyberpunk-2077/terminology.md
+references/universes/cyberpunk-2077/communication.md
+references/universes/cyberpunk-2077/perspectives.md
+references/formats/personal-message.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+The output is entirely German from greeting to closing, with idiomatic colloquial grammar throughout ("schaffst du es, mir den Bericht bis morgen zu schicken?", "ich krieg sie sonst nicht vom Hals", "ich schulde dir was!"). "Choom" stays in original form exactly as the skill's language rule prescribes, and "Agent/Agenten" is the natural German word as well as the universe term; the requested action (report tomorrow) is preserved with a natural in-world pressure reason and a trusted-friend register. Notably `perspective-rules.md` was not read — discretionary under step 2 and arguably the more disciplined choice for a friend-to-friend note.
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS
+
+## Technical: Netrunner Subnet Post-Mortem
+
+Loading-check scenario: confirm `technology.md` is loaded for a technical subject while `star-wars/` and `dune/` files are not.
+
+Prompt:
+
+> As a netrunner in Cyberpunk 2077, write a message to my crew asking them to check why our intrusion attempt against a corporate subnet failed last night.
+
+### Raw output
+
+```text
+Chooms —
+
+Keep this between us. Last night's run on the corp subnet went sideways, and I need to know why.
+
+What I know: I cleared the outer ICE, made it into the subnet, and about forty seconds in the countermeasures woke up — faster and meaner than anything we scouted. I torched the session and dropped before the trace could lock on.
+
+What I don't know: whether they patched after our recon, whether our entry point is burned, or whether somebody talked.
+
+So here's what I need. Sweep your rigs for trace leftovers — anything pings, you go dark and flag the rest of us. Pull the recon data from that subnet and compare it to what hit me last night. And nobody touches that subnet again until we know what we're dealing with — not from your agent, not from a public terminal.
+
+Usual spot tonight. Bring what you find.
+
+— Vex
+```
+
+### File-read log
+
+```text
+SKILL.md
+references/universes/index.md
+references/core/writing-principles.md
+references/core/immersion-levels.md
+references/core/perspective-rules.md
+references/universes/cyberpunk-2077/universe.md
+references/universes/cyberpunk-2077/terminology.md
+references/universes/cyberpunk-2077/communication.md
+references/universes/cyberpunk-2077/technology.md
+references/universes/cyberpunk-2077/perspectives.md
+references/formats/personal-message.md
+references/core/factual-consistency.md
+```
+
+### Scores
+
+- Overall rubric score: 2/2
+
+### Reviewer rationale
+
+The loading requirement is met — `technology.md` is manifest-confirmed and no `star-wars/` or `dune/` file is read — and the output is technically literate and consistent with the pack's boundaries: ICE as network defense (not a password field), countermeasures waking mid-run, session torched, trace risk, observed data structurally separated from inference ("What I know" / "What I don't know" — precisely communication.md's netrunning rule), concrete crew actions, and the Blackwall kept out of a routine intrusion. The personal-message format is intact ("Chooms —" greeting, compact context, request, meetup detail, signature handle).
+
+### Critical failures
+
+None.
+
+### Result
+
+PASS
+
+## Verdicts
+
+| Scenario | Result |
+|---|---|
+| CC-01 | PASS |
+| CC-04 (email) | PASS |
+| CC-04 (mission briefing) | PASS |
+| PC-03 (Cyberpunk fixer) | PASS — NOT INTERCHANGEABLE vs. Dune counterpart |
+| IL-03 (Cyberpunk executive) | PASS — NOT INTERCHANGEABLE vs. Star Wars counterpart |
+| IL-04 (German) | PASS |
+| Technical (netrunner subnet post-mortem) | PASS |
+
+All 7 scenario groups passed on the first GREEN run at score 2 (CC-04 counted as one group, both outputs passing).
+
+## GREEN decision: GREEN
+
+All 7 Cyberpunk 2077 scenario groups pass their rubrics at score 2: the corporate announcement reads as authentic sanitized-institution PR with an unambiguous deadline change, both the email and the mission briefing remain recognizable under universe adaptation, the fixer's diplomatic invitation and the executive's threat are shaped end-to-end by their selected roles, German is preserved end-to-end with "Choom" untranslated per the language rule, and the netrunner post-mortem confirms `technology.md` loads for technical subjects. Cross-universe isolation held in every run: no file-read log lists any file under another universe's directory, a grep of all seven outputs for Star Wars/Dune institution, technology, and expression terms found no hits, and no `tests/` file was read in any Task 7 manifest.
+
+Both carried-forward interchangeability residuals are now closed by the reviewer's direct comparison: PC-03's name-removed non-interchangeability (fixer vs. the Dune Bene Gesserit counterpart) and IL-03's (corporate executive vs. the Star Wars Imperial officer counterpart) were both judged NOT INTERCHANGEABLE, closing the residuals carried from Tasks 6 and 5 respectively.
+
+One non-blocking observation is recorded: the role-supplied runs (PC-03, IL-03, technical) still loaded `perspectives.md` — within SKILL.md step 2's latitude and harmless, since the role profiles live there. The NCPD gap the reviewer flagged in the pack sanity check was fixed in the terminology commit immediately preceding this one (`references/universes/cyberpunk-2077/terminology.md`).
