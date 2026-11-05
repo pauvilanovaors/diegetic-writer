@@ -23,7 +23,7 @@ mkdir -p ~/.claude/skills
 ln -s "$PWD/diegetic-writer" ~/.claude/skills/diegetic-writer
 ```
 
-Use only one installation link per client scope to avoid duplicate skill names. To verify the directory contract during development, run `uvx skills-ref validate .`; this is not a runtime requirement.
+Use only one installation link per client scope to avoid duplicate skill names. To verify the directory contract during development, run `uvx --from skills-ref agentskills validate ./diegetic-writer`; this is not a runtime requirement.
 
 ## Usage
 
@@ -100,7 +100,7 @@ See `references/examples/before-after.md` for superficial versus contextual tran
 2. Add nonempty `universe.md`, `terminology.md`, `factions.md`, `communication.md`, `technology.md`, and `perspectives.md` files.
 3. Include every required section and a Sources section in each file.
 4. Add one `- NEW-IDENTIFIER: Display Name` line to `references/universes/index.md`.
-5. Run behavior tests for the new universe and `uvx skills-ref validate .`.
+5. Run behavior tests for the new universe and `uvx --from skills-ref agentskills validate ./diegetic-writer`.
 
 Do not edit `SKILL.md` to add a universe. Read `packs/README.md` for the full authoring and source-attribution contract.
 
@@ -111,7 +111,7 @@ The Markdown scenarios under `tests/` evaluate real generated behavior, not file
 Run structural validation:
 
 ```bash
-uvx skills-ref validate .
+uvx --from skills-ref agentskills validate ./diegetic-writer
 ```
 
 Then run all `BT-*`, `PC-*`, `IL-*`, and `CC-*` scenarios in an installed compatible agent. Use fresh reviewers, retain failed outputs, and never convert a behavior failure into a keyword-only test.

@@ -2336,3 +2336,88 @@ The examples-request scenario failed on the first run and passed after the fix; 
 ## GREEN decision: GREEN
 
 The first examples-request failure was a retrieval gap, not a pack or examples defect: the agent produced reasonable self-generated examples, but `SKILL.md` gave it no route to the worked examples, and the fix — the step-2 routing sentence directing examples/immersion-demonstration/quality-guidance requests to both example files, added to the Activate For bullet in the same breath — made both files load on the rerun, which then generated a fresh, non-copied, structurally distinct four-level demonstration. That routing sentence carries the anti-copying instruction now in `SKILL.md` step 2 ("Treat them as quality references: never copy their names, sentences, or invented details into outputs"), and the leakage check validated it: proper-noun, sentence/near-sentence, and invented-detail comparison of all four outputs against both example files, plus an automated 3- and 4-word n-gram scan, came back clean. The BT-01 and BT-02 reruns pass every rubric dimension at 2 with correct selective loading and no cross-universe reads. Both minors from `task-8-review.md` (untranscribed Step-3 recordings, uncommitted `SKILL.md` fix) are closed by this record and the commit carrying it: the SKILL.md routing sentence rides in the same commit as this verification record. Task 8 is GREEN.
+
+---
+# GREEN Verification Results — Diegetic Writer, Documentation (Task 9)
+
+Documentation under test: `README.md` (user-facing install, usage, extension, and testing documentation, committed as bf65457) and `packs/README.md` (pack authoring and attribution contract), with `SKILL.md` consulted as the cross-reference baseline. Unlike the behavior sections above, this section records documentation checks: Markdown link integrity, structural validation of the documented validator command, and a fresh-agent comprehension review of the README by an agent carrying no prior knowledge of this project. The comprehension review exposed one real defect — a stale validator command in `README.md` — which is fixed in the commit carrying this record.
+
+## Runner metadata
+
+- Harness: Kimi Code CLI
+- Comprehension-check agent model: kimi-code/kimi-for-coding (fresh context, no prior project knowledge)
+- Date: 2026-11-05
+- Evidence: `task-9-readme-comprehension.md` in `.superpowers/sdd/2026-11-02-diegetic-writer/`
+- Validator run output quoted below (run 2026-11-05, after the Task 8 `SKILL.md` edit)
+
+## Check 1: Local Markdown link check
+
+Every local Markdown link in `SKILL.md`, `README.md`, and `packs/README.md` was checked in a prior session.
+
+Output:
+
+```text
+All local Markdown links resolve
+```
+
+### Result
+
+PASS
+
+## Check 2: Structural validation
+
+The validator command documented when the Task 9 deliverables were committed — `uvx skills-ref validate .` — was stale: `skills-ref` is not the executable name, and a bare `.` argument fails the validator's directory-name check (the validator requires the target directory's name to match the skill name). `README.md` now documents the corrected command in all three places it appeared (installation note, "Create a Universe" step 5, and the Testing section):
+
+```bash
+uvx --from skills-ref agentskills validate ./diegetic-writer
+```
+
+Run 2026-11-05 from the clone parent:
+
+```text
+Valid skill: diegetic-writer
+```
+
+### Result
+
+PASS
+
+## Check 3: Fresh-agent README comprehension
+
+A fresh agent with no prior project knowledge answered eight questions from the docs alone, covering: install steps and paths (Q1); supported universes and their identifiers (Q2); available perspectives and what happens when none is chosen (Q3); the four immersion levels and the default (Q4); supported communication formats (Q5); how to add a new universe (Q6); how to run and evaluate the behavior tests (Q7); and any gaps, confusions, or contradictions (Q8).
+
+The review's answerability summary:
+
+| # | Question | Status |
+|---|---|---|
+| 1 | Install steps/paths | Fully answerable (README.md:7–26) |
+| 2 | Universes + identifiers | Fully answerable (README.md:50–58 + references/universes/index.md) |
+| 3 | Perspectives + default behavior | Fully answerable (README.md:48,52–56; SKILL.md:26) |
+| 4 | Immersion levels + default | Fully answerable (README.md:78–87, 48) |
+| 5 | Communication formats | Fully answerable (README.md:60–76; SKILL.md:52–64) |
+| 6 | Add a new universe | Fully answerable (README.md:97–105; packs/README.md:5–68) |
+| 7 | Run/evaluate behavior tests | Mostly answerable — procedure and rubric location documented, but the rubric/runner details themselves live in `tests/` (README.md:107–117); no automated command exists, some prefix-to-file mapping unstated |
+| 8 | Gaps/confusion | N/A (analysis); findings listed — no hard contradictions, several minor gaps |
+
+All eight questions were answerable from the docs. Two non-blocking observations are recorded rather than treated as failures:
+
+- Q7's partial gaps: the rubric and fresh-context runner details live inside `tests/` (their canonical location, acceptable since `tests/` is where the README points), and no per-scenario command exists — evaluation requires a human or agent reviewer, not an automated runner.
+- Q8's three minors: (1) no uninstall or update guidance, including the dangling-symlink case when the repo is moved or deleted after linking; (2) planned universes are listed under the single "## Available Universes and Perspectives" heading, relying on one disambiguating sentence ("planned extensions, not installed packs") to keep a new user from trying an uninstalled identifier; (3) the neutral-perspective default mechanism (load the pack's `perspectives.md`, select the pack-designated default) is documented only in `SKILL.md`, which a user may never read. Q8's explicit contradiction check passed: defaults, format mappings, and the "do not edit SKILL.md to add a universe" rule agree across README.md and SKILL.md.
+
+### Result
+
+PASS
+
+## Verdicts
+
+| Check | Result |
+|---|---|
+| Local Markdown link check (SKILL.md, README.md, packs/README.md) | PASS |
+| Structural validation (documented validator command) | PASS |
+| Fresh-agent README comprehension (8 questions) | PASS |
+
+The local link check passed; the validator command was corrected to a form verified working on 2026-11-05 (`Valid skill: diegetic-writer`); and a fresh agent could install, use, and extend the skill from the docs alone, answering all eight comprehension questions. Q7's gaps and Q8's three minors are non-blocking and are deferred to the ledger.
+
+## GREEN decision: GREEN
+
+The documentation enables installation, use, and extension of the skill without reading `SKILL.md` internals: install paths, universes, perspectives, immersion levels, formats, universe creation, and the testing protocol are all stated in `README.md`/`packs/README.md` and were confirmed by a fresh-context agent. The one real defect the review exposed — the stale validator command `uvx skills-ref validate .` in three places — was fixed to `uvx --from skills-ref agentskills validate ./diegetic-writer` and verified working; the fix rides in the same commit as this record. The remaining minors (uninstall guidance, planned-vs-installed heading wording, neutral-default mechanism location) are deferred to the ledger. Task 9 is GREEN.
